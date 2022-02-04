@@ -1,12 +1,21 @@
 package pe.izipay.pgs.core.application.services.cuentas.impl;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.RequiredArgsConstructor;
+import org.apache.commons.codec.digest.DigestUtils;
+import pe.izipay.pgs.core.application.repositories.CuentaMaestraRepositorio;
 import pe.izipay.pgs.core.application.services.cuentas.EsIntegraCuentaMaestraServicio;
 import pe.izipay.pgs.core.domain.dto.cuentas.CalcularHashCuentaMaestraCargaUtil;
 import pe.izipay.pgs.core.domain.dto.cuentas.EsIntegraCuentaMaestraCargaUtil;
 
+@RequiredArgsConstructor
 public class EsIntegraCuentaMaestraServicioImpl implements EsIntegraCuentaMaestraServicio {
+
+    private final CuentaMaestraRepositorio cuentaRepositorio;
+
     @Override
-    public Boolean esIntegra(EsIntegraCuentaMaestraCargaUtil dto) {
+    public Boolean esIntegra(EsIntegraCuentaMaestraCargaUtil dto) throws JsonProcessingException {
        String calculado = calcularHash(dto.getCalcularHashCargaUtil());
        if(dto.getHashActual().equals(calculado)){
            return true;
@@ -15,14 +24,16 @@ public class EsIntegraCuentaMaestraServicioImpl implements EsIntegraCuentaMaestr
     }
 
     @Override
-    public String calcularHash(CalcularHashCuentaMaestraCargaUtil dto) {
-
-        return "Hash calculado";
+    public String calcularHash(CalcularHashCuentaMaestraCargaUtil dto) throws JsonProcessingException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        String jsonObject = objectMapper.writeValueAsString(dto);
+        String hash = DigestUtils.sha3_256Hex(jsonObject);
+        return hash;
     }
 
     @Override
-    public void generarHash(CalcularHashCuentaMaestraCargaUtil dto) {
-        String calculado = calcularHash(dto);
-        // repository.saveHash(dto.getId_cuenta);
+    public void generarHash(CalcularHashCuentaMaestraCargaUtil dto) throws JsonProcessingException {
+        String hashCalculado = calcularHash(dto);
+        cuentaRepositorio.guardarHash(dto.getIdCuenta(), hashCalculado);
     }
 }

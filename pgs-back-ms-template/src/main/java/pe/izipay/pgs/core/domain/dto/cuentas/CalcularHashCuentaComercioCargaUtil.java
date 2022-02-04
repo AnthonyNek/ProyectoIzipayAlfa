@@ -1,18 +1,21 @@
 package pe.izipay.pgs.core.domain.dto.cuentas;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-import java.math.BigDecimal;
+import java.util.Date;
 
 @Setter
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
 public class CalcularHashCuentaComercioCargaUtil {
-    private Integer idCcuenta;
-    private BigDecimal saldoEfectivo;
-    private BigDecimal saldoIGV;
-    private  BigDecimal saldoRetenido;
-    // private BigDecimal saldoDisponible;
-    private Data ultFechaTrx;
+    private String idCuenta;
+    private double saldoEfectivo;
+    private double saldoIGV;
+    private double saldoRetenido;
+    private Moneda moneda;
+    private Date ultimaFechaTransaccion;
 }

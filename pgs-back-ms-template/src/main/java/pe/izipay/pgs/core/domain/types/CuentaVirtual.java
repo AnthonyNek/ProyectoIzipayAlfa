@@ -11,6 +11,6 @@ import lombok.Setter;
 @NoArgsConstructor
 public class CuentaVirtual {
     public Number cuentaId1;
-    public String cuentaId;
+    public Integer cuentaId;
     public char estadoCuenta;
 }
