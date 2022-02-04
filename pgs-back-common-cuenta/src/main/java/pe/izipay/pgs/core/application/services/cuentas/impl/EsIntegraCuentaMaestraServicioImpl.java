@@ -31,7 +31,6 @@ public class EsIntegraCuentaMaestraServicioImpl implements EsIntegraCuentaMaestr
         ObjectMapper objectMapper = new ObjectMapper();
         String jsonObject = objectMapper.writeValueAsString(dto);
         String hash = DigestUtils.sha3_256Hex(jsonObject);
-        System.out.println(hash);
         return hash;
     }
 
