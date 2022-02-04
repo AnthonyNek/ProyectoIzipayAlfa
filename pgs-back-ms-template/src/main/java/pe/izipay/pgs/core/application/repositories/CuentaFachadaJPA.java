@@ -15,13 +15,10 @@ import java.math.BigDecimal;
 import java.util.LinkedList;
 import java.util.List;
 
-public interface CuentaFachadaJPA extends CrudRepository<CuentaVirtual, Long> {
+public interface CuentaFachadaJPA{
 
     @Query("SELECT id, titular_id FROM cuenta WHERE cuenta_id = ?0")
     CuentaTitularIdVO findByCuenta_id(String cuentaId);
-
-    @Query("SELECT id, cuenta_id FROM cuenta WHERE titular_id = ?0")
-    LinkedList<CuentaIdentificadorVO> listarPorTitular(String titularId);
 
     @Query("SELECT valor FROM saldo_actual WHERE cuenta = ?0 AND codigotiposaldo = ?0")
     BigDecimal obtenerSaldo(Integer cuenta, Integer codTipoSaldo);
