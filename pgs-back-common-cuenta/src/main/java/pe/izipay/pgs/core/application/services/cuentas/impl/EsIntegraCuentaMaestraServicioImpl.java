@@ -20,10 +20,7 @@ public class EsIntegraCuentaMaestraServicioImpl implements EsIntegraCuentaMaestr
     @Override
     public Boolean esIntegra(EsIntegraCuentaMaestraCargaUtil dto) throws JsonProcessingException {
        String calculado = calcularHash(dto.getCalcularHashCargaUtil());
-       if(dto.getHashActual().equals(calculado)){
-           return true;
-       } else
-           return false;
+        return dto.getHashActual().equals(calculado);
     }
 
     /** Calcula el hash de la cuenta maestra
@@ -34,6 +31,7 @@ public class EsIntegraCuentaMaestraServicioImpl implements EsIntegraCuentaMaestr
         ObjectMapper objectMapper = new ObjectMapper();
         String jsonObject = objectMapper.writeValueAsString(dto);
         String hash = DigestUtils.sha3_256Hex(jsonObject);
+        System.out.println(hash);
         return hash;
     }
 

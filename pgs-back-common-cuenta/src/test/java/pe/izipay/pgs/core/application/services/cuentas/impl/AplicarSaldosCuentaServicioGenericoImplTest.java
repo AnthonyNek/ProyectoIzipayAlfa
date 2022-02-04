@@ -52,7 +52,7 @@ public class AplicarSaldosCuentaServicioGenericoImplTest {
                 return null;
             }
         };
-        servicio = new AplicarSaldosCuentaServicioGenericoImpl(repositorio, servicioConsulta);
+        servicio = new AplicarSaldosCuentaServicioGenericoImpl(repositorio, servicioConsulta, servicioConsulta);
     }
 
     @Test
@@ -67,6 +67,29 @@ public class AplicarSaldosCuentaServicioGenericoImplTest {
                 0,
                 0
         ));
+        Collection<SaldoAfectado> expectedOutput = new ArrayList<>();
+        expectedOutput.add(
+                new SaldoAfectado("11111111", Rubro.COMISION_PROCESO, TipoSaldo.SALDO_EFECTIVO, 2000, 1950, 50, TipoOperacion.DECREMENTAR)
+        );
+        expectedOutput.add(
+                new SaldoAfectado("11111111", Rubro.IMPORTE, TipoSaldo.SALDO_EFECTIVO, 1950, 2950, 1000, TipoOperacion.INCREMENTAR)
+        );
+        System.out.println(saldosAfectados);
+        assertEquals(expectedOutput, saldosAfectados);
+    }
+
+    @Test
+    void aplicarSaldoMaestraCase1() {
+        Collection<SaldoAfectado> saldosAfectados =
+                servicio.aplicarSaldosCuentaMaestra(new AplicarSaldoCargaUtil(
+                        "11111111",
+                        1,
+                        1000,
+                        50,
+                        0,
+                        0,
+                        0
+                ));
         Collection<SaldoAfectado> expectedOutput = new ArrayList<>();
         expectedOutput.add(
                 new SaldoAfectado("11111111", Rubro.COMISION_PROCESO, TipoSaldo.SALDO_EFECTIVO, 2000, 1950, 50, TipoOperacion.DECREMENTAR)

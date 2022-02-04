@@ -14,7 +14,7 @@ public interface IAuditable<T, E, R, M> {
 	R getUsuario_modificacion();
 	void setUsuario_modificacion(R usuario_modicacion);
 	
-	public T getFecha_modificacion();
+	T getFecha_modificacion();
 	void setFecha_modificacion(T fecha_modicacion);
 	
 	R getUsuario_eliminacion();

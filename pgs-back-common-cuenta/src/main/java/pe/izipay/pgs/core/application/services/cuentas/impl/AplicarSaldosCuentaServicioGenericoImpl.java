@@ -19,6 +19,7 @@ public class AplicarSaldosCuentaServicioGenericoImpl implements AplicarSaldosCue
     private final RepositorioSaldosTransaccion repositorioSaldosTransaccion;
 
     private final ConsultarSaldosCuentaServicio consultarSaldosCC;
+    private final ConsultarSaldosCuentaServicio consultarSaldosCM;
 
     /** Aplica los saldos de la cuenta comercio
      * @param dto
@@ -56,9 +57,34 @@ public class AplicarSaldosCuentaServicioGenericoImpl implements AplicarSaldosCue
      * @param dto
      */
     @Override
-    public void aplicarSaldosCuentaMaestra(AplicarSaldoCargaUtil dto) {
-
+    public Collection<SaldoAfectado> aplicarSaldosCuentaMaestra(AplicarSaldoCargaUtil dto) {
+        Collection<SaldoTransaccion> saldoTransacciones = repositorioSaldosTransaccion.obtenerSaldosTransacciones(dto.getTrxId());
+        Collection<Saldo> saldos = consultarSaldosCM.consultarSaldosCuenta(Integer.parseInt(dto.getCuentaId()));
+        Collection<SaldoAfectado> saldosAfectados = new ArrayList<>();
+        for( SaldoTransaccion saldoTransaccion : saldoTransacciones){
+            Saldo saldoActual = saldos.stream().filter(saldo -> saldo.getTipoSaldo() == saldoTransaccion.getTipoSaldo()).findFirst().get();
+            saldosAfectados.add(new SaldoAfectado(
+                    dto.getCuentaId(),
+                    saldoTransaccion.getRubro(),
+                    saldoTransaccion.getTipoSaldo(),
+                    saldoActual.getMonto(),
+                    getMontoFinal(
+                            saldoTransaccion.getTipoOperacion(),
+                            saldoActual.getMonto(),
+                            dto.getMontoPorTipo(saldoTransaccion.getRubro())
+                    ),
+                    dto.getMontoPorTipo(saldoTransaccion.getRubro()),
+                    saldoTransaccion.getTipoOperacion()
+            ));
+            saldoActual.setMonto(getMontoFinal(
+                    saldoTransaccion.getTipoOperacion(),
+                    saldoActual.getMonto(),
+                    dto.getMontoPorTipo(saldoTransaccion.getRubro())
+            ));
+        }
+        return saldosAfectados;
     }
+
     /** Obtiene el monto final
      * @param tipoOperacion
      * @param montoInicial

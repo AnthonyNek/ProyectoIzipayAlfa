@@ -10,7 +10,7 @@ import pe.izipay.common.core.exceptions.AppRuntimeException;
 
 public class PemFile {
 	
-	private PemObject pemObject;
+	private final PemObject pemObject;
 	 
 	public PemFile(String filename) {
 		try (PemReader pemReader = new PemReader(new InputStreamReader(new FileInputStream(filename)))) {			
