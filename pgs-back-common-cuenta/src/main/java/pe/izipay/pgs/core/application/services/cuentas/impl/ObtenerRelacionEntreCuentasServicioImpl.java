@@ -15,6 +15,9 @@ public class ObtenerRelacionEntreCuentasServicioImpl implements ObtenerRelacionE
 
     private final CuentaRepositorio repositorio;
 
+    /** Listar cuentas por titular
+     * @param cuentaId
+     */
     @Override
     public List<CuentaIdentificadorVO> ejecutar(String cuentaId) {
         var titularId = repositorio.obtenerTitularCuenta(cuentaId, PGSCoreErrorType.CUENTAS_TITULAR_NO_ENCONTRADO);

@@ -7,8 +7,53 @@
         <processorPath useClasspath="false">
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.22/9c08ea24c6eb714e2d6170e8122c069a0ba9aacf/lombok-1.18.22.jar" />
         </processorPath>
-        <module name="izipay-common-core.test" />
-        <module name="izipay-common-core.main" />
+        <module name="pgs-back-ms-template-rest.izipay-common-iocautoscan.main" />
+        <module name="pgs-back-ms-template-rest.pgs-back-core.main" />
+        <module name="pgs-back-ms-template-rest.izipay-common-iocautoscan.test" />
+        <module name="pgs-back-ms-template-rest.pgs-back-core.test" />
+        <module name="pgs-back-ms-template-rest.izipay-common-core.test" />
+        <module name="pgs-back-ms-template-rest.izipay-common-beans.test" />
+        <module name="pgs-back-ms-template-rest.pgs-back-common-cuenta.test" />
+        <module name="pgs-back-ms-template-rest.izipay-common-beans.main" />
+        <module name="pgs-back-ms-template-rest.izipay-common-core.main" />
+        <module name="pgs-back-ms-template-rest.pgs-back-common-cuenta.main" />
+      </profile>
+      <profile name="Gradle Imported" enabled="true">
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.22/9c08ea24c6eb714e2d6170e8122c069a0ba9aacf/lombok-1.18.22.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.mapstruct/mapstruct-processor/1.5.0.Beta1/4234cd15868add932bbab89df540696d70ba1102/mapstruct-processor-1.5.0.Beta1.jar" />
+        </processorPath>
+        <module name="pgs-back-ms-template-rest.test" />
+        <module name="pgs-back-ms-template-rest.pgs-back-core-repository-jpa.test" />
+      </profile>
+      <profile name="Gradle Imported" enabled="true">
+        <outputRelativeToContentRoot value="true" />
+        <option name="mapstruct.defaultComponentModel" value="spring" />
+        <option name="mapstruct.suppressGeneratorTimestamp" value="true" />
+        <option name="mapstruct.suppressGeneratorVersionInfoComment" value="true" />
+        <option name="mapstruct.verbose" value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-configuration-processor/2.6.3/6c0e21d31af4964436aa81db270b4d00f9c5436f/spring-boot-configuration-processor-2.6.3.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok-mapstruct-binding/0.2.0/2f1cf9ced7b720ba4996c942b816669e63f0fa4f/lombok-mapstruct-binding-0.2.0.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.mapstruct/mapstruct-processor/1.5.0.Beta1/4234cd15868add932bbab89df540696d70ba1102/mapstruct-processor-1.5.0.Beta1.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.22/9c08ea24c6eb714e2d6170e8122c069a0ba9aacf/lombok-1.18.22.jar" />
+        </processorPath>
+        <module name="pgs-back-ms-template-rest.main" />
+      </profile>
+      <profile name="Gradle Imported" enabled="true">
+        <outputRelativeToContentRoot value="true" />
+        <option name="mapstruct.defaultComponentModel" value="spring" />
+        <option name="mapstruct.suppressGeneratorTimestamp" value="true" />
+        <option name="mapstruct.suppressGeneratorVersionInfoComment" value="true" />
+        <option name="mapstruct.verbose" value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-configuration-processor/2.6.3/6c0e21d31af4964436aa81db270b4d00f9c5436f/spring-boot-configuration-processor-2.6.3.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.22/9c08ea24c6eb714e2d6170e8122c069a0ba9aacf/lombok-1.18.22.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok-mapstruct-binding/0.2.0/2f1cf9ced7b720ba4996c942b816669e63f0fa4f/lombok-mapstruct-binding-0.2.0.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.mapstruct/mapstruct-processor/1.5.0.Beta1/4234cd15868add932bbab89df540696d70ba1102/mapstruct-processor-1.5.0.Beta1.jar" />
+        </processorPath>
+        <module name="pgs-back-ms-template-rest.pgs-back-core-repository-jpa.main" />
       </profile>
     </annotationProcessing>
   </component>

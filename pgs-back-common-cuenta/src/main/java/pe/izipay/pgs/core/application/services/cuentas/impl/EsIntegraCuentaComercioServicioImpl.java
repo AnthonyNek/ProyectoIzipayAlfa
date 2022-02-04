@@ -15,6 +15,9 @@ public class EsIntegraCuentaComercioServicioImpl implements EsIntegraCuentaComer
 
     private final CuentaComercioRepositorio cuentaRepositorio;
 
+    /** Valida si es integra o no
+     * @param dto
+     */
     @Override
     public Boolean esIntegra(EsIntegraCuentaComercioCargaUtil dto) throws JsonProcessingException {
         String calculado = calcularHash(dto.getCalcularHashCargaUtil());
@@ -23,7 +26,9 @@ public class EsIntegraCuentaComercioServicioImpl implements EsIntegraCuentaComer
         } else
             return false;
     }
-
+    /** Calcula el hash de la cuenta comercio
+     * @param dto
+     */
     @Override
     public String calcularHash(CalcularHashCuentaComercioCargaUtil dto) throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
@@ -32,10 +37,12 @@ public class EsIntegraCuentaComercioServicioImpl implements EsIntegraCuentaComer
         System.out.println(hash);
         return hash;
     }
-
+    /** Genera y guarda el hash
+     * @param calcularHashCuentaComercioCargaUtilDto
+     */
     @Override
-    public void generarHash(CalcularHashCuentaComercioCargaUtil dto) throws JsonProcessingException {
-        String hashCalculado = calcularHash(dto);
-        cuentaRepositorio.guardarHash(dto.getIdCuenta(), hashCalculado);
+    public void generarHash(CalcularHashCuentaComercioCargaUtil calcularHashCuentaComercioCargaUtilDto) throws JsonProcessingException {
+        String hashCalculado = calcularHash(calcularHashCuentaComercioCargaUtilDto);
+        cuentaRepositorio.guardarHash(calcularHashCuentaComercioCargaUtilDto.getIdCuenta(), hashCalculado);
     }
 }

@@ -22,17 +22,26 @@ public class CuentaRepositorioJPA extends BaseJPARepository<Cuenta, Long> implem
 
     private final CuentaFachadaJPA fachada;
     private final CuentaMapeador mapeador;
-
+    /** Obtener titular por cuentaId
+     * @param cuentaId
+     * @param error
+     */
     @Override
     public String obtenerTitularCuenta(String cuentaId, IReadOnlyError<?> error) {
         return CrudUtils.verifyRecord(fachada.findByCuenta_id(cuentaId), error).getTitular_id();
     }
-
+    /** Obtener cuenta por cuentaId
+     * @param cuentaId
+     * @param error
+     */
     @Override
     public CuentaVirtual obtenerCuenta(Integer cuentaId, IReadOnlyError<?> error) {
         return null;
     }
 
+    /** Listar cuentas por Titular
+     * @param titularId
+     */
     @Override
     public List<CuentaIdentificadorVO> listarCuentasPorTitular(String titularId) {
         return fachada.listarPorTitular(titularId);

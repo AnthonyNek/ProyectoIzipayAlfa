@@ -17,12 +17,16 @@ public class ConsultarSaldosCuentaServicioImpl implements ConsultarSaldosCuentaS
     private final CuentaFachadaJPA cuentaFachadaJPA;
     protected static final AppRuntimeException EXCEPTION_RECORD_NOT_FOUND = new CommonModuleException(CommonErrorType.RECORD_NOT_FOUND);
 
-
+    /** Aplicar saldo para cuenta maestra
+    * @param cuentaFachadaJPA
+     */
     public ConsultarSaldosCuentaServicioImpl(CuentaFachadaJPA cuentaFachadaJPA) {
         this.cuentaFachadaJPA = cuentaFachadaJPA;
     }
 
-    //Consulta todos los saldos de una cuenta en especifica
+    /** Aplicar saldo para cuenta maestra
+    * @param idCuenta
+     */
     @Override
     public List<Saldo> consultarSaldosCuenta(Integer idCuenta){
         if(idCuenta == null){
@@ -37,7 +41,9 @@ public class ConsultarSaldosCuentaServicioImpl implements ConsultarSaldosCuentaS
 
     }
 
-    //Consulta un tipo de saldo de una cuenta en especifica
+    /** Consulta un tipo de saldo de una cuenta en especifica
+     * @param idCuenta
+     */
     @Override
     public BigDecimal consultarSaldosCuenta(Integer idCuenta, Integer codTipoSaldo) {
         BigDecimal saldo = cuentaFachadaJPA.obtenerSaldo(idCuenta, codTipoSaldo);

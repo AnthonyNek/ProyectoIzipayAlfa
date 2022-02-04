@@ -18,7 +18,9 @@ public class AplicarSaldoCargaUtil {
     private double impuestoProceso;
     private double comisionEmision;
     private double impuestoEmision;
-
+    /** Obtiene el monto por tipo
+     * @param RUBRO
+     */
     public double getMontoPorTipo(Rubro RUBRO) {
         switch(RUBRO) {
             case COMISION_EMISION:
@@ -29,6 +31,8 @@ public class AplicarSaldoCargaUtil {
                 return getImpuestoEmision();
             case IMPUESTO_PROCESO:
                 return getImpuestoProceso();
+            case IMPORTE:
+                return getImporte();
         }
         return 0;
     }
