@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="VcsDirectoryMappings">
+    <mapping directory="$PROJECT_DIR$/pgs-back-common-cuenta" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/pgs-back-ms-template" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/pgs-back-ms-template-repository-orm" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/pgs-back-ms-template-rest" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/pgs-common-beans" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/pgs-common-core" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/pgs-common-iocautoscan" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/pgs-dev-scripts" vcs="Git" />
+  </component>
+</project>

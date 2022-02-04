@@ -1,0 +1,25 @@
+pluginManagement {
+    ext {
+        set('pluginsVersion', '../pgs-dev-scripts/gradle')
+    }
+    apply from: "${devScripts}/dependencies-version.gradle"
+
+    plugins {
+        id 'org.springframework.boot' version pluginSpringBootVersion
+        id 'io.spring.dependency-management' version pluginSpringDependencyManagement
+        id 'org.asciidoctor.convert' version pluginAsciiDoctorVersion
+        id 'java'
+        id 'groovy'
+        id 'jacoco'
+        id 'org.barfuin.gradle.jacocolog' version pluginJacocoLogVersion
+        id 'org.sonarqube' version pluginSonarQubeVersion
+    }
+}
+
+rootProject.name = 'izipay-common-iocautoscan'
+include (
+        ':izipay-common-core',
+        ':izipay-common-beans'
+)
+project(':izipay-common-core').projectDir = file('../pgs-common-core')
+project(':izipay-common-beans').projectDir = file('../pgs-common-beans')

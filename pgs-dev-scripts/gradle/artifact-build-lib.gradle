@@ -1,0 +1,25 @@
+bootJar {
+	enabled = false
+}
+
+jar {
+	enabled = true
+}
+
+test {
+	outputs.dir snippetsDir
+	useJUnitPlatform()
+}
+
+task dropArtifact(type: Delete) {
+	delete files("../artifacts/${project.name}-${project.version}.jar")
+}
+
+task buildArtifact(type: Copy, dependsOn: ['dropArtifact', 'build']) {
+	tasks.findByName('build').mustRunAfter 'dropArtifact'
+
+	from ('build/libs/')
+	include "${project.name}-${project.version}-plain.jar"
+	destinationDir file('../artifacts/')
+	rename "${project.name}-${project.version}-plain.jar", "${project.name}-${project.version}.jar"
+}

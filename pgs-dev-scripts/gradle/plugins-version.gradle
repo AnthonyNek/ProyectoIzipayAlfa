@@ -1,0 +1,8 @@
+ext {	
+	pluginSpringBootVersion		= '2.6.3'
+	pluginAsciiDoctorVersion		= '1.5.8'
+	pluginSpringDependencyManagement	= '1.0.11.RELEASE'
+	pluginSonarQubeVersion			= '3.2.0'
+	pluginJacocoLogVersion			= '2.0.0'
+		
+}

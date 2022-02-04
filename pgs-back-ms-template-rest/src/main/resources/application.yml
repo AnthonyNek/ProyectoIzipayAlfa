@@ -1,0 +1,157 @@
+app:
+  json:
+    date-format: 'yyyy-MM-dd'
+    time-format: 'HH:mm:ss'
+  logs-separator: null
+  security:
+    enable: true
+    encryption:
+      rsa:
+        private: './others/rsa/private.der'
+      secret-key: 'N$rtM'
+    x-api-key:      
+      clients: 'angular11-12345, android12345, ios12345'
+    jwt:
+      #Duracion en segundos (access: 24 Horas(86400), refresh: 2 Semanas(1209600))
+      #type: 'rsa', 'secret-key'
+      access-token:
+        type: 'rsa'
+        rsa:
+          private: './others/rsa/private.der'
+          public: './others/rsa/public.pem'
+        duration: 86400
+      refresh-token:
+        type: 'secret-key'
+        #rsa:
+          #private: './others/rsa/private.der'
+          #public: './others/rsa/public.pem'
+        secret-key: 'nsrtm123'
+        duration: 1209600
+    
+server:
+  servlet:
+    context-path: /api/pgs/v1/template
+  port: 9500
+springdoc:  
+  api-docs:
+    enabled: true
+    path: /open-api-v3
+  swagger-ui:
+    path: /swagger-ui
+
+spring:
+  main:
+    lazy-initialization: false
+    allow-circular-references: true
+  datasource:
+    driverClassName: 'org.h2.Driver'
+    username: 'sa'
+    password: 'password'
+    # url: jdbc:h2:mem:pgs_db
+    url: 'jdbc:h2:file:./h2-database/pgs_db'
+  jpa:
+    show-sql: true
+    database-platform: 'org.hibernate.dialect.H2Dialect'
+    # none, create, create-drop, validate, update
+    hibernate.ddl-auto: create-drop
+  h2:
+    console:
+      enabled: true
+      path: '/h2-console'
+      settings.trace: false
+      settings.web-allow-others: true
+  mvc:
+    throw-exception-if-no-handler-found: true
+    static-path-pattern: /static
+  jackson:           
+    date-format: "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+    time-zone: UTC
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    protocol: smtp
+    username: nsrtmmef@gmail.com
+    password: NsrtmMef$2021
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+          quitwait: false
+  ldap:     
+    urls: 'ldap://localhost:1389'
+    base: 'OU=users,DC=example,DC=org'
+    #username: 'customuser'
+    #password: 'custompassword'
+    #embedded:
+      #port: 8389
+      #ldif: classpath:ldap-data.ldif
+      #base-dn: 'OU=users,DC=example,DC=org'
+  thymeleaf:
+    mode: TEXT
+    #cache: false    
+logging:
+  level: 
+    '[pe.bluepoint.mef]': TRACE
+    '[org.springframework.web]': WARN
+    '[org.springframework.data.mongodb.core.MongoTemplate]': DEBUG
+
+---
+spring:
+  config:
+    activate:
+      on-profile: dev
+
+app:
+  logs-separator: ' *** '
+  security:
+    enable: true
+
+---
+spring:
+  config:
+    activate:
+      on-profile: test
+
+---
+spring:
+  config:
+    activate:
+      on-profile: qa
+
+---
+spring:
+  config:
+    activate:
+      on-profile: prod
+logging:
+  level:
+    '[pe.bluepoint.mef]': WARN
+    '[org.springframework.web]': WARN
+    '[org.springframework.data.mongodb.core.MongoTemplate]': WARN
+
+app:
+  logs-separator: ' *** '
+  security:
+    enable: true
+    encryption:
+      rsa:
+        private: '../artifacts/rsa/private.der'
+      secret-key: 'N$rtM-prod'
+    x-api-key:
+      clients: 'angular11-12345-prod, android12345-prod, ios12345-prod'
+    jwt:
+      access-token:
+        type: 'rsa'
+        rsa:
+          private: '../artifacts/rsa/private-access-jwt.der'
+          public: '../artifacts/rsa/public-access-jwt.pem'
+        duration: 86400
+      refresh-token:
+        type: 'rsa'
+        rsa:
+          private: '../artifacts/rsa/private-refresh-jwt.der'
+          public: '../artifacts/rsa/public-refresh-jwt.pem'
+        duration: 1209600

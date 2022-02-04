@@ -1,0 +1,47 @@
+apply plugin: 'org.sonarqube'
+
+sonarqube {
+	properties {
+		property "sonar.host.url", "${sonarQubeHost}"
+		property "sonar.login", "${sonarQubeTokenLogin}"
+
+		property "sonar.projectKey", "${project.name}"
+		property "sonar.projectName", "${sonarQubeProjectTitle}"
+		property "sonar.projectVersion", "${project.version}"
+
+		property "sonar.language", "java"
+		property "sonar.java.source", "${sourceCompatibility}"
+		property "sonar.sources", "src/main/java"
+		property "sonar.java.binaries", "${buildDir}/classes"
+		property "sonar.java.libraries", "${buildDir}/output/libs"
+		property "sonar.sourceEncoding", "UTF-8"
+
+		property "sonar.exclusions", "**/querydsl/"
+
+		property "sonar.tests", "src/test/java"
+		property "sonar.junit.reportPaths", "${buildDir}/test-results/unitTests"
+		property "sonar.java.coveragePlugin", "jacoco"
+		property "sonar.coverage.jacoco.xmlReportPaths", "${buildDir}/${jacocoReportDir}/coverage-tests.xml"
+		property "sonar.java.test.libraries", "${buildDir}/output/libs"
+
+		property "sonar.groovy.jacoco.reportPath", "${buildDir}/test-results/integrationTests"
+
+		property "sonar.scm.disabled", "false"
+		property "sonar.buildbreaker.skip", "false"
+		property "sonar.working.directory", "${buildDir}/sonar"
+	}
+}
+
+task buildSonarQube(dependsOn: ['clean', 'test', 'build', 'jacocoTestReport', 'copyLombokToLibOut']) {
+	tasks.findByName('copyLombokToLibOut').mustRunAfter 'jacocoTestReport'
+	tasks.findByName('jacocoTestReport').mustRunAfter 'build'
+	tasks.findByName('build').mustRunAfter 'test'
+	tasks.findByName('test').mustRunAfter 'clean'
+}
+
+task deploySonarQube(dependsOn: ['buildSonarQube', 'sonarqube']) {
+	def sq = tasks.findByName('sonarqube')
+	if(sq != null) {
+		sq.mustRunAfter 'buildSonarQube'
+	}	
+}

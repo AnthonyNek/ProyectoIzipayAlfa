@@ -1,0 +1,11 @@
+//Copiar para eliminar los falsos positivos de LOMBOK en SonarQube
+task copyLombokToLibOut(type: Copy) {
+	def existLombokCompileOnly = configurations.findByName('compileOnly') != null
+	if(existLombokCompileOnly){
+		//println "Has lombok compileOnly: ${existLombokCompileOnly}"
+		from configurations.compileOnly
+    	into "${buildDir}/output/libs"
+    	include "lombok-*.jar"
+	}
+}
+configurations.compileOnly.setCanBeResolved(true)

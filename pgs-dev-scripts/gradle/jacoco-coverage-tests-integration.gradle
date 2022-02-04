@@ -1,0 +1,32 @@
+sourceSets {
+	testintegration {
+		java.srcDir "$projectDir/src/testintegration/java"
+		resources.srcDir "$projectDir/src/test/resources"
+		compileClasspath += main.output + test.output
+		runtimeClasspath += main.output + test.output
+	}
+}
+
+configurations {
+	testintegrationImplementation.extendsFrom testImplementation
+	testintegrationRuntime.extendsFrom testRuntime
+}
+
+task integrationTests(type: Test) {
+	useJUnitPlatform()
+	reports.html.outputLocation.set(file("$buildDir/reports/integration-tests"))
+	testClassesDirs = sourceSets.testintegration.output.classesDirs
+	classpath = sourceSets.testintegration.runtimeClasspath
+}
+check.dependsOn integrationTests
+
+task integrationTestsReport(dependsOn: ['clean', 'integrationTests']) {
+	tasks.findByName('integrationTests').mustRunAfter 'clean'
+	finalizedBy jacocoTestReport
+}
+
+task allTests(dependsOn: ['clean', 'unitTests', 'integrationTests']) {
+	tasks.findByName('integrationTests').mustRunAfter 'unitTests'
+	tasks.findByName('unitTests').mustRunAfter 'clean'
+	finalizedBy jacocoTestReport
+}

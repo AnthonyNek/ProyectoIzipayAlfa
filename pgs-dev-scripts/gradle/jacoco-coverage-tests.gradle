@@ -1,0 +1,31 @@
+apply plugin: 'jacoco'
+
+jacoco {
+	toolVersion = "0.8.7"
+	reportsDirectory = layout.buildDirectory.dir("${jacocoReportDir}").get()
+}
+
+jacocoTestReport {
+	executionData.setFrom(fileTree(projectDir).include("**/*.exec"))
+	//executionData(test, integrationTest)
+
+	reports {
+		xml.enabled true
+		xml.destination file("${buildDir}/${jacocoReportDir}/coverage-tests.xml")
+		csv.enabled false
+		html.enabled true
+		html.destination file("${buildDir}/${jacocoReportDir}/coverage-tests-html")
+	}
+}
+
+task unitTests(type: Test) {
+	useJUnitPlatform()
+	reports.html.outputLocation.set(file("${buildDir}/reports/unit-tests"))
+	testClassesDirs = sourceSets.test.output.classesDirs
+	classpath = sourceSets.test.runtimeClasspath
+}
+
+task unitTestsReport(dependsOn: ['clean', 'unitTests']) {
+	tasks.findByName('unitTests').mustRunAfter 'clean'
+	finalizedBy jacocoTestReport
+}

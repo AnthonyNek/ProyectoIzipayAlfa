@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GradleMigrationSettings" migrationVersion="1" />
+  <component name="GradleSettings">
+    <option name="linkedExternalProjectsSettings">
+      <GradleProjectSettings>
+        <option name="delegatedBuild" value="true" />
+        <option name="testRunner" value="GRADLE" />
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/pgs-back-common-cuenta" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/pgs-back-common-cuenta" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="delegatedBuild" value="true" />
+        <option name="testRunner" value="GRADLE" />
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/pgs-back-ms-template" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/pgs-back-ms-template" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="delegatedBuild" value="true" />
+        <option name="testRunner" value="GRADLE" />
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/pgs-back-ms-template-repository-orm" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/pgs-back-ms-template-repository-orm" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="delegatedBuild" value="true" />
+        <option name="testRunner" value="GRADLE" />
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/pgs-back-ms-template-rest" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/pgs-back-common-cuenta" />
+            <option value="$PROJECT_DIR$/pgs-back-ms-template" />
+            <option value="$PROJECT_DIR$/pgs-back-ms-template-repository-orm" />
+            <option value="$PROJECT_DIR$/pgs-back-ms-template-rest" />
+            <option value="$PROJECT_DIR$/pgs-common-beans" />
+            <option value="$PROJECT_DIR$/pgs-common-core" />
+            <option value="$PROJECT_DIR$/pgs-common-iocautoscan" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="delegatedBuild" value="true" />
+        <option name="testRunner" value="GRADLE" />
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/pgs-common-beans" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/pgs-common-beans" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="delegatedBuild" value="true" />
+        <option name="testRunner" value="GRADLE" />
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/pgs-common-core" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/pgs-common-core" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="delegatedBuild" value="true" />
+        <option name="testRunner" value="GRADLE" />
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/pgs-common-iocautoscan" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/pgs-common-iocautoscan" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="delegatedBuild" value="true" />
+        <option name="testRunner" value="GRADLE" />
+        <option name="distributionType" value="WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/pgs-dev-scripts/gradle" />
+        <option name="gradleJvm" value="#JAVA_HOME" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/pgs-dev-scripts/gradle" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+    </option>
+  </component>
+</project>

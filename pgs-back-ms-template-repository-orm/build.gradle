@@ -1,0 +1,68 @@
+plugins {
+	id 'org.springframework.boot'
+	id 'io.spring.dependency-management'
+	id 'java'
+	id 'jacoco'
+	id 'org.barfuin.gradle.jacocolog'
+	id 'org.sonarqube'
+}
+
+repositories {
+	mavenCentral()
+}
+
+ext {
+	set('snippetsDir', file("build/generated-snippets"))
+	set('jacocoReportDir', 'reports/jacoco')
+	set('sonarQubeProjectTitle', 'PGS-BACK-MS-TEMPLATE-REPOSITORY-ORM')
+	set('sonarQubeHost', 'http://localhost:9000')
+	set('sonarQubeTokenLogin', 'token-sonarqube')
+}
+apply from: "${devScripts}/dependencies-version.gradle"
+
+dependencies {
+    def profile = project.findProperty('profile')
+	if(profile != null && profile != 'dev') {
+		implementation files('../artifacts/izipay-common-core-1.0.0-RELEASE.jar')
+		implementation files('../artifacts/izipay-common-beans-1.0.0-RELEASE.jar')
+		implementation files('../artifacts/pgs-back-core-1.0.0-RELEASE.jar')
+	} else {
+		implementation project(':izipay-common-core')
+		implementation project(':izipay-common-beans')
+		implementation project(':pgs-back-core')
+	}
+
+	compileOnly "org.mapstruct:mapstruct:${mapstructVersion}"
+    compileOnly "org.projectlombok:lombok:${lombokVersion}"
+
+	implementation "org.mapstruct:mapstruct:${mapstructVersion}"
+	implementation "com.fasterxml.jackson.core:jackson-databind"
+	implementation "org.bouncycastle:bcprov-ext-jdk16:1.46" //RSA
+
+	implementation "org.springframework.boot:spring-boot-starter"	
+	implementation "org.springframework.boot:spring-boot-starter-validation"	
+	implementation "org.springframework:spring-web"
+
+	implementation "org.springframework.boot:spring-boot-starter-data-jpa"
+	implementation "com.h2database:h2"
+	implementation "org.apache.poi:poi:5.2.0"
+	implementation "org.apache.poi:poi-ooxml:5.2.0"
+
+	annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
+	annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+	annotationProcessor "org.projectlombok:lombok-mapstruct-binding:${lombokMapstructBindingVersion}"
+	annotationProcessor "org.mapstruct:mapstruct-processor:${mapstructVersion}"
+	
+	testImplementation "org.springframework.boot:spring-boot-starter-test"
+	//testImplementation "com.h2database:h2:2.1.210"
+	
+	testCompileOnly "org.projectlombok:lombok:${lombokVersion}"
+	
+	testAnnotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+	testAnnotationProcessor "org.mapstruct:mapstruct-processor:${mapstructVersion}"
+}
+apply from: "${devScripts}/map-struct-util.gradle"
+apply from: "${devScripts}/artifact-build-lib.gradle"
+apply from: "${devScripts}/lombok-copy-lib.gradle"
+apply from: "${devScripts}/jacoco-coverage-tests.gradle"
+apply from: "${devScripts}/sonarqube-util.gradle"

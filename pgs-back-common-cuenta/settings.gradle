@@ -1,0 +1,27 @@
+pluginManagement {
+    ext {
+        set('devScripts', '../pgs-dev-scripts/gradle')
+    }
+    apply from: "${devScripts}/dependencies-version.gradle"
+
+    plugins {
+        id 'org.springframework.boot' version pluginSpringBootVersion
+        id 'io.spring.dependency-management' version pluginSpringDependencyManagement
+        id 'org.asciidoctor.convert' version pluginAsciiDoctorVersion
+        id 'java'
+        id 'groovy'
+        id 'jacoco'
+        id 'org.barfuin.gradle.jacocolog' version pluginJacocoLogVersion
+        id 'org.sonarqube' version pluginSonarQubeVersion
+    }
+}
+
+rootProject.name = 'pgs-back-common-cuenta'
+include (
+        ':izipay-common-core',
+        ':izipay-common-beans',
+        ':pgs-back-core'
+)
+project(':izipay-common-core').projectDir = file('../pgs-common-core')
+project(':izipay-common-beans').projectDir = file('../pgs-common-beans')
+project(':pgs-back-core').projectDir = file('../pgs-back-ms-template')

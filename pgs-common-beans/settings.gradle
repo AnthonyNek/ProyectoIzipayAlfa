@@ -1,0 +1,20 @@
+pluginManagement {
+    ext {
+        set('devScripts', '../pgs-dev-scripts/gradle')
+    }
+    apply from: "${devScripts}/dependencies-version.gradle"
+
+    plugins {
+        id 'org.springframework.boot' version pluginSpringBootVersion
+        id 'io.spring.dependency-management' version pluginSpringDependencyManagement
+        id 'java'
+        id 'jacoco'
+        id 'org.barfuin.gradle.jacocolog' version pluginJacocoLogVersion
+        id 'org.sonarqube' version pluginSonarQubeVersion
+    }
+}
+
+rootProject.name = 'izipay-common-beans'
+
+include (':izipay-common-core')
+project(':izipay-common-core').projectDir = file('../pgs-common-core')

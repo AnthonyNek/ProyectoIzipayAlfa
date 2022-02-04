@@ -1,0 +1,18 @@
+spring:
+  datasource:
+    driverClassName: 'org.h2.Driver'
+    username: 'sa'
+    password: 'password'
+    # url: jdbc:h2:mem:pgs_db
+    url: 'jdbc:h2:file:./h2-database/pgs_db'
+  jpa:
+    show-sql: true
+    database-platform: 'org.hibernate.dialect.H2Dialect'
+    # none, create, create-drop, validate, update
+    hibernate.ddl-auto: create-drop
+  h2:
+    console:
+      enabled: true
+      path: '/h2-console'
+      settings.trace: false
+      settings.web-allow-others: true

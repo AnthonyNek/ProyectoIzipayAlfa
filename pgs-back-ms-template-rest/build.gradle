@@ -1,0 +1,95 @@
+plugins {
+	id 'org.springframework.boot'
+	id 'io.spring.dependency-management'
+	id 'org.asciidoctor.convert'
+	id 'java'
+	id 'groovy'
+	id 'jacoco'
+	id 'org.barfuin.gradle.jacocolog'
+	id 'org.sonarqube'
+}
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+ext {
+	set('snippetsDir', file("build/generated-snippets"))
+	set('jacocoReportDir', 'reports/jacoco')
+	set('sonarQubeProjectTitle', 'IZIPAY-COMMON-UTILS')
+	set('sonarQubeHost', 'http://localhost:9000')
+	set('sonarQubeTokenLogin', 'token-sonarqube')
+}
+apply from: "${devScripts}/dependencies-version.gradle"
+
+dependencies {
+	def profile = project.findProperty('profile')
+	if(profile != null && profile != 'dev') {
+		implementation files('../artifacts/izipay-common-core-1.0.0-RELEASE.jar')
+		implementation files('../artifacts/izipay-common-beans-1.0.0-RELEASE.jar')
+		implementation files('../artifacts/izipay-common-iocautoscan-1.0.0-RELEASE.jar')
+		implementation files('../artifacts/pgs-back-core-1.0.0-RELEASE.jar')
+		implementation files('../artifacts/pgs-back-core-repository-jpa-1.0.0-RELEASE.jar')
+		implementation files('../artifacts/pgs-back-common-cuenta-1.0.0-RELEASE.jar')
+	} else {
+		implementation project(':izipay-common-core')
+		implementation project(':izipay-common-beans')
+		implementation project(':izipay-common-iocautoscan')
+		implementation project(':pgs-back-core')
+		implementation project(':pgs-back-core-repository-jpa')
+		implementation project(':pgs-back-common-cuenta')
+	}
+
+	implementation "org.springframework.boot:spring-boot-starter-web"
+	implementation "org.springframework.boot:spring-boot-starter-validation"
+	implementation "org.springframework.boot:spring-boot-starter-data-mongodb"
+	implementation "org.springframework.boot:spring-boot-starter-data-redis"
+	implementation "org.springframework.boot:spring-boot-starter-mail"
+	implementation "org.springframework.boot:spring-boot-starter-thymeleaf"	
+	implementation "org.springframework.boot:spring-boot-starter-security"
+	implementation "org.springframework.security:spring-security-test"
+	implementation 'org.springdoc:springdoc-openapi-ui:1.6.4'
+	implementation "io.jsonwebtoken:jjwt:0.9.1"
+	//Dependencias LDAP
+	implementation "com.unboundid:unboundid-ldapsdk"
+	implementation "org.springframework.ldap:spring-ldap-core"
+	implementation "org.springframework.security:spring-security-ldap"
+	implementation "org.bouncycastle:bcprov-ext-jdk16:1.46"	//RSA
+
+	compileOnly "org.mapstruct:mapstruct:${mapstructVersion}"
+	compileOnly "org.projectlombok:lombok:${lombokVersion}"
+
+	implementation "org.mapstruct:mapstruct:${mapstructVersion}"
+	
+	developmentOnly "org.springframework.boot:spring-boot-devtools"
+	
+	annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"	
+	annotationProcessor "org.projectlombok:lombok-mapstruct-binding:${lombokMapstructBindingVersion}"
+	annotationProcessor "org.mapstruct:mapstruct-processor:${mapstructVersion}"
+	annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+			
+	testCompileOnly "org.projectlombok:lombok:${lombokVersion}"
+	testCompileOnly "org.spockframework:spock-core:2.1-M2-groovy-3.0"
+	testCompileOnly "org.spockframework:spock-junit4:2.1-M2-groovy-3.0"
+
+	testImplementation "org.codehaus.groovy:groovy:3.0.8"
+	testImplementation "org.spockframework:spock-spring:2.1-M2-groovy-3.0"
+	testImplementation "org.springframework.restdocs:spring-restdocs-mockmvc"
+	testImplementation "org.springframework.boot:spring-boot-starter-test"
+			
+	testAnnotationProcessor "org.projectlombok:lombok:${lombokVersion}"	
+	testAnnotationProcessor "org.mapstruct:mapstruct-processor:${mapstructVersion}"
+}
+
+apply from: "${devScripts}/spring-boot-util.gradle"
+apply from: "${devScripts}/map-struct-util.gradle"
+apply from: "${devScripts}/lombok-copy-lib.gradle"
+apply from: "${devScripts}/jacoco-coverage-tests.gradle"
+apply from: "${devScripts}/jacoco-coverage-tests-integration.gradle"
+apply from: "${devScripts}/sonarqube-util.gradle"
