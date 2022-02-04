@@ -6,7 +6,7 @@ import lombok.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class CuentaVirtualComercio extends CuentaVirtual {
+public class CuentaVirtualComercio extends CuentaVirtual{
     @NonNull
     public Integer comercioId;
 

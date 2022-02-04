@@ -10,6 +10,27 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AplicarSaldoCargaUtil {
-    private Integer cuentaId;
-    private Integer trxId;
+
+    private String cuentaId;
+    private int trxId;
+    private double importe;
+    private double comisionProceso;
+    private double impuestoProceso;
+    private double comisionEmision;
+    private double impuestoEmision;
+
+    public double getMontoPorTipo(Rubro RUBRO) {
+        switch(RUBRO) {
+            case COMISION_EMISION:
+                return getComisionEmision();
+            case COMISION_PROCESO:
+                return getComisionProceso();
+            case IMPUESTO_EMISION:
+                return getImpuestoEmision();
+            case IMPUESTO_PROCESO:
+                return getImpuestoProceso();
+        }
+        return 0;
+    }
+
 }
