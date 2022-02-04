@@ -20,6 +20,9 @@ public class AplicarSaldosCuentaServicioGenericoImpl implements AplicarSaldosCue
 
     private final ConsultarSaldosCuentaServicio consultarSaldosCC;
 
+    /** Aplica los saldos de la cuenta comercio
+     * @param dto
+     */
     @Override
     public Collection<SaldoAfectado> aplicarSaldosCuentaComercio(AplicarSaldoCargaUtil dto) {
         Collection<SaldoTransaccion> saldoTransacciones = repositorioSaldosTransaccion.obtenerSaldosTransacciones(dto.getTrxId());
@@ -44,11 +47,18 @@ public class AplicarSaldosCuentaServicioGenericoImpl implements AplicarSaldosCue
         return saldosAfectados;
     }
 
+    /** Aplica los saldos de la cuenta maestra
+     * @param dto
+     */
     @Override
     public void aplicarSaldosCuentaMaestra(AplicarSaldoCargaUtil dto) {
 
     }
-
+    /** Obtiene el monto final
+     * @param tipoOperacion
+     * @param montoInicial
+     * @param monto
+     */
     private double getMontoFinal(TipoOperacion tipoOperacion, double montoInicial, double monto) {
         if(TipoOperacion.INCREMENTAR == tipoOperacion)
             return montoInicial + monto;
