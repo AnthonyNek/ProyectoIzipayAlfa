@@ -10,8 +10,8 @@ public class SmtpSender {
 
 	private final JavaMailSender mailSender;
 	
-	private MimeMessage message;
-	private MimeMessageHelper helper;
+	private final MimeMessage message;
+	private final MimeMessageHelper helper;
 	
 	protected SmtpSender(JavaMailSender mailSender) throws MessagingException {		
 		this.mailSender = mailSender;

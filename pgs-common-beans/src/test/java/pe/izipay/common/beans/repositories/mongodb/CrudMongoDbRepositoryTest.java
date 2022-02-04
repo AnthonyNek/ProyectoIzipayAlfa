@@ -8,6 +8,7 @@ import org.springframework.data.domain.SliceImpl;
 
 import java.util.ArrayList;
 
+import pe.izipay.common.beans.CrudUtils;
 import pe.izipay.common.beans.repositories.mongodb.CrudMongoDbRepository;
 import pe.izipay.common.beans.repositories.mongodb.FacadeMongoDbRepository;
 import pe.izipay.common.core.exceptions.BaseAppError;
@@ -32,15 +33,15 @@ class CrudMongoDbRepositoryTest {
 
     @Test
     void testRecordVerification() {
-        assertEquals("data", c.verifyRecord("data"));
-        assertEquals("data", c.verifyRecord("data", new BaseAppError<>()));
+        assertEquals("data", CrudUtils.verifyRecord("data"));
+        assertEquals("data", CrudUtils.verifyRecord("data", new BaseAppError<>()));
 
-        var ex = assertThrows(CommonModuleException.class, () -> c.verifyRecord(null));
+        var ex = assertThrows(CommonModuleException.class, () -> CrudUtils.verifyRecord(null));
         assertEquals(CommonErrorType.RECORD_NOT_FOUND, ex.getError());
 
         var listErrors = new ArrayList<IReadOnlyError<?>>(1);
         listErrors.add(GenericErrorType.DEFAULT);
-        var ex2 = assertThrows(AppModuleException.class, () -> c.verifyRecord(null, GenericErrorType.DEFAULT));
+        var ex2 = assertThrows(AppModuleException.class, () -> CrudUtils.verifyRecord(null, GenericErrorType.DEFAULT));
         assertEquals(ex2.getErrors(), listErrors);
     }
 

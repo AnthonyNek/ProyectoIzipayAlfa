@@ -9,9 +9,9 @@ public enum RelativePathType {
 	ENVIROMENT("$/"),
 	ABSOLUTE("");
 	
-	private String prefix;
+	private final String prefix;
 	
-	private RelativePathType(String prefix) {
+	RelativePathType(String prefix) {
 		this.prefix = prefix;
 	}
 	

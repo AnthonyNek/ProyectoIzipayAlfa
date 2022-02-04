@@ -121,13 +121,13 @@ class DataValidationHandlerTest {
         BaseAppError<Object> errorUnknow = new BaseAppError<>();
         assertTrue((new DataValidationHandler(customValidatorBean, castError, errorUnknow, new Map[]{new HashMap<>()},
                 (Function<Class<?>, Short>) mock(Function.class))).createAppErrorBuilder("Value").getErrors().isEmpty());
-        verify(customValidatorBean).validate((Object) any(), (Class[]) any());
+        verify(customValidatorBean).validate(any(), (Class[]) any());
     }
 
     @Test
     void testThrowErrors() {
         CustomValidatorBean customValidatorBean = mock(CustomValidatorBean.class);
-        when(customValidatorBean.validate((Object) any(), (Class[]) any())).thenReturn(new HashSet<>());
+        when(customValidatorBean.validate(any(), (Class[]) any())).thenReturn(new HashSet<>());
         Function<String, IReadOnlyError<?>> castError = (Function<String, IReadOnlyError<?>>) mock(Function.class);
         BaseAppError<Object> errorUnknow = new BaseAppError<>();
         (new DataValidationHandler(customValidatorBean, castError, errorUnknow, new Map[]{new HashMap<>()},
