@@ -14,6 +14,9 @@ public class EsIntegraCuentaMaestraServicioImpl implements EsIntegraCuentaMaestr
 
     private final CuentaMaestraRepositorio cuentaRepositorio;
 
+    /** Valida si es integra o no
+     * @param dto
+     */
     @Override
     public Boolean esIntegra(EsIntegraCuentaMaestraCargaUtil dto) throws JsonProcessingException {
        String calculado = calcularHash(dto.getCalcularHashCargaUtil());
@@ -23,6 +26,9 @@ public class EsIntegraCuentaMaestraServicioImpl implements EsIntegraCuentaMaestr
            return false;
     }
 
+    /** Calcula el hash de la cuenta maestra
+     * @param dto
+     */
     @Override
     public String calcularHash(CalcularHashCuentaMaestraCargaUtil dto) throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
@@ -31,6 +37,9 @@ public class EsIntegraCuentaMaestraServicioImpl implements EsIntegraCuentaMaestr
         return hash;
     }
 
+    /** Genera y guarda el hash
+     * @param dto
+     */
     @Override
     public void generarHash(CalcularHashCuentaMaestraCargaUtil dto) throws JsonProcessingException {
         String hashCalculado = calcularHash(dto);
