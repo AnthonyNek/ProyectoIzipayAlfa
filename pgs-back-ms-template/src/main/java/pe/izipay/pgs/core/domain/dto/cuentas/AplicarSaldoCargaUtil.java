@@ -29,6 +29,8 @@ public class AplicarSaldoCargaUtil {
                 return getImpuestoEmision();
             case IMPUESTO_PROCESO:
                 return getImpuestoProceso();
+            case IMPORTE:
+                return getImporte();
         }
         return 0;
     }

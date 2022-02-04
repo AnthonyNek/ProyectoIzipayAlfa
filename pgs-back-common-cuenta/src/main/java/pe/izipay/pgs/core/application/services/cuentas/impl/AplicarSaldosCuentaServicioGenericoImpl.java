@@ -40,6 +40,11 @@ public class AplicarSaldosCuentaServicioGenericoImpl implements AplicarSaldosCue
                     dto.getMontoPorTipo(saldoTransaccion.getRubro()),
                     saldoTransaccion.getTipoOperacion()
             ));
+            saldoActual.setMonto(getMontoFinal(
+                    saldoTransaccion.getTipoOperacion(),
+                    saldoActual.getMonto(),
+                    dto.getMontoPorTipo(saldoTransaccion.getRubro())
+            ));
         }
         return saldosAfectados;
     }
