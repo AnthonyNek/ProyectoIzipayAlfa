@@ -1,0 +1,15 @@
+pe.izipay.common.beans
+pe.izipay.common.beans.adapters.cryptography
+pe.izipay.common.beans.adapters.json
+pe.izipay.common.beans.adapters.jwt
+pe.izipay.common.beans.adapters.smtp
+pe.izipay.common.beans.delegates
+pe.izipay.common.beans.middlewares
+pe.izipay.common.beans.middlewares.mongodb
+pe.izipay.common.beans.middlewares.security
+pe.izipay.common.beans.repositories
+pe.izipay.common.beans.repositories.audit
+pe.izipay.common.beans.repositories.jpa
+pe.izipay.common.beans.repositories.mongodb
+pe.izipay.common.beans.repositories.redis
+pe.izipay.common.beans.restful

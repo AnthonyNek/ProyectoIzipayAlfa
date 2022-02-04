@@ -1,0 +1,5 @@
+pe.izipay.pgs.core.infrastructure.repositories.jpa
+pe.izipay.pgs.core.infrastructure.repositories.jpa.fachadas
+pe.izipay.pgs.core.infrastructure.repositories.jpa.impl
+pe.izipay.pgs.core.infrastructure.repositories.jpa.mapeadores
+pe.izipay.pgs.core.infrastructure.repositories.jpa.modelos

@@ -21,10 +21,7 @@ public class EsIntegraCuentaComercioServicioImpl implements EsIntegraCuentaComer
     @Override
     public Boolean esIntegra(EsIntegraCuentaComercioCargaUtil dto) throws JsonProcessingException {
         String calculado = calcularHash(dto.getCalcularHashCargaUtil());
-        if(dto.getHashActual().equals(calculado)){
-            return true;
-        } else
-            return false;
+        return dto.getHashActual().equals(calculado);
     }
     /** Calcula el hash de la cuenta comercio
      * @param dto

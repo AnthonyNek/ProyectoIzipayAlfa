@@ -11,6 +11,8 @@ import java.util.Map;
 
 @Getter
 @JsonSerialize(using = ReadOnlyErrorSerializer.class)
+/** Enum PGSCoreErrorType
+ */
 public enum PGSCoreErrorType implements IErrorType.IErrorTypeString, IFeatureType {
 
 	CUENTAS_TITULAR_NO_ENCONTRADO(FeatureType.CUENTAS, "No existe el titular"),

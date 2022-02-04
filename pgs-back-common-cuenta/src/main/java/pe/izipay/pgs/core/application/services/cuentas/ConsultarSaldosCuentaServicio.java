@@ -8,6 +8,6 @@ import java.util.List;
 
 public interface ConsultarSaldosCuentaServicio {
 
-    public List<Saldo> consultarSaldosCuenta(Integer idCuenta);
-    public BigDecimal consultarSaldosCuenta(Integer cuenta, Integer codTipoSaldo);
+    List<Saldo> consultarSaldosCuenta(Integer idCuenta);
+    BigDecimal consultarSaldosCuenta(Integer cuenta, Integer codTipoSaldo);
 }

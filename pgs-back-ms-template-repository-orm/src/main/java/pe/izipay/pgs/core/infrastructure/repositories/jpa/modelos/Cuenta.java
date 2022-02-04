@@ -17,10 +17,8 @@ public class Cuenta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-
     @Column(length = 20, unique = true)
     private String cuenta_id;
-
     @Column(length = 10)
     private String titular_id;
 

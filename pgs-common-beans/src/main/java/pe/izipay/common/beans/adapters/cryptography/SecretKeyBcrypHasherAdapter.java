@@ -2,7 +2,7 @@ package pe.izipay.common.beans.adapters.cryptography;
 
 public class SecretKeyBcrypHasherAdapter extends BcrypHasherAdapter {
 
-	private String secretKey;
+	private final String secretKey;
 	
 	public SecretKeyBcrypHasherAdapter(String secretKey) {
 		super();

@@ -9,6 +9,8 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+/** Clase Transsacion
+ */
 public class Transaccion {
     private Integer trxId;
     private Integer tipoTrx;
