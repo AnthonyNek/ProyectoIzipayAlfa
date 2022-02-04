@@ -26,7 +26,6 @@ public class CuentaVirtualMaestra extends CuentaVirtual{
     @NonNull
     public Number titularTitularId1;
 
-    @NonNull
-    public Integer cuentaId;
+    public String cuentaId;
 
 }

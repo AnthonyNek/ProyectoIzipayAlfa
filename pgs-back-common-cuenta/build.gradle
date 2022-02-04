@@ -56,7 +56,7 @@ dependencies {
 	testImplementation "org.springframework.boot:spring-boot-starter-test"
 	
 	testCompileOnly "org.projectlombok:lombok:${lombokVersion}"
-	
+	testImplementation group: 'org.mockito', name: 'mockito-core', version: '4.0.0'
 	testAnnotationProcessor "org.projectlombok:lombok:${lombokVersion}"
 }
 apply from: "${devScripts}/artifact-build-lib.gradle"

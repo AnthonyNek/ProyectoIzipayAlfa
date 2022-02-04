@@ -4,6 +4,5 @@ public enum TipoSaldo {
     SALDO_EFECTIVO,
     SALDO_RETENIDO,
     SALDO_IGV,
-    SALDO_REBATE,
-    SALDO_EFECTIVO
+    SALDO_REBATE
 }

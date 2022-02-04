@@ -1,24 +1,19 @@
 package pe.izipay.pgs.core.application.services.cuentas.impl;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
+
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import pe.izipay.pgs.core.application.repositories.CuentaComercioRepositorio;
 import pe.izipay.pgs.core.application.repositories.RepositorioSaldosTransaccion;
 import pe.izipay.pgs.core.application.services.cuentas.ConsultarSaldosCuentaServicio;
-import pe.izipay.pgs.core.application.services.cuentas.EsIntegraCuentaComercioServicio;
 import pe.izipay.pgs.core.domain.dto.cuentas.*;
 import pe.izipay.pgs.core.domain.types.Saldo;
 import pe.izipay.pgs.core.domain.types.TipoSaldo;
-
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Date;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class AplicarSaldosCuentaServicioGenericoImplTest {
 
@@ -30,6 +25,9 @@ public class AplicarSaldosCuentaServicioGenericoImplTest {
     @BeforeAll
     static void setUp() {
         repositorio = new RepositorioSaldosTransaccion() {
+            /** Test Obtener Saldo Transacciones
+             * @param idTransaccion
+             */
             @Override
             public Collection<SaldoTransaccion> obtenerSaldosTransacciones(int idTransaccion)
             {
@@ -40,6 +38,9 @@ public class AplicarSaldosCuentaServicioGenericoImplTest {
             }
         };
         servicioConsulta = new ConsultarSaldosCuentaServicio() {
+            /** Test Consultar Saldo Cuenta
+             * @param idCuenta
+             */
             @Override
             public List<Saldo> consultarSaldosCuenta(Integer idCuenta) {
                 ArrayList<Saldo> saldos = new ArrayList<>();
@@ -54,7 +55,8 @@ public class AplicarSaldosCuentaServicioGenericoImplTest {
         };
         servicio = new AplicarSaldosCuentaServicioGenericoImpl(repositorio, servicioConsulta);
     }
-
+    /** Test Aplicar Saldo Comercio Case
+     */
     @Test
     void aplicarSaldoComercioCase1() {
         Collection<SaldoAfectado> saldosAfectados =

@@ -11,6 +11,7 @@ import java.time.LocalDateTime;
 @Setter
 @Entity
 @Table(name = EsquemaBD.Tabla.CUENTAS)
+
 public class Cuenta {
 
     @Id

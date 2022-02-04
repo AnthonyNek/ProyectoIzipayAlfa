@@ -22,8 +22,7 @@ public class CuentaVirtualComercio extends CuentaVirtual{
     @NonNull
     public Number comercioComercioId1;
 
-    @NonNull
-    public Integer cuentaId;
+    public String cuentaId;
 }
 
 
